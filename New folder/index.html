@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priority To-Do List</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>Priority Task Manager</h1>
+            <p class="tagline">Organize, Prioritize, Achieve!</p>
+        </header>
+
+        <!-- Main Content Wrapper -->
+        <div class="main-wrapper">
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <!-- Male Character -->
+                    <div class="character male-character static-character" id="maleChar">
+                        <div class="head">
+                            <div class="hair-back"></div>
+                            <div class="hair-spike spike1"></div>
+                            <div class="hair-spike spike2"></div>
+                            <div class="hair-spike spike3"></div>
+                            <div class="hair-spike spike4"></div>
+                            <div class="hair-spike spike5"></div>
+                            <div class="face">
+                                <div class="eyes">
+                                    <div class="eye left-eye">
+                                        <div class="pupil"></div>
+                                        <div class="shine"></div>
+                                    </div>
+                                    <div class="eye right-eye">
+                                        <div class="pupil"></div>
+                                        <div class="shine"></div>
+                                    </div>
+                                </div>
+                                <div class="nose"></div>
+                                <div class="mouth"></div>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div class="chest"></div>
+                            <div class="abs"></div>
+                            <div class="clothing"></div>
+                        </div>
+                        <div class="arms">
+                            <div class="arm left">
+                                <div class="shoulder"></div>
+                                <div class="bicep"></div>
+                                <div class="forearm"></div>
+                                <div class="hand"></div>
+                            </div>
+                            <div class="arm right">
+                                <div class="shoulder"></div>
+                                <div class="bicep"></div>
+                                <div class="forearm"></div>
+                                <div class="hand"></div>
+                            </div>
+                        </div>
+                        <div class="legs">
+                            <div class="leg left">
+                                <div class="thigh"></div>
+                                <div class="calf"></div>
+                                <div class="foot"></div>
+                            </div>
+                            <div class="leg right">
+                                <div class="thigh"></div>
+                                <div class="calf"></div>
+                                <div class="foot"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Timer Section -->
+                    <div class="timer-section">
+                        <h3>⏱️ Priority Timer</h3>
+                        <div class="timer-display" id="timerDisplay">00:00:00</div>
+                        <input type="number" id="timerMinutes" placeholder="Minutes" min="0" max="60">
+                        <div class="timer-controls">
+                            <button class="btn-small" id="startTimer">Start</button>
+                            <button class="btn-small" id="pauseTimer">Pause</button>
+                            <button class="btn-small" id="resetTimer">Reset</button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Stats -->
+                    <div class="stats-section">
+                        <h3>📊 Stats</h3>
+                        <div class="stat-item">
+                            <span>Total Tasks:</span>
+                            <span id="totalTasks">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>Completed:</span>
+                            <span id="completedTasks">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span>High Priority:</span>
+                            <span id="highPriorityCount">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Resource Collection -->
+                    <div class="resources-section">
+                        <h3>📚 Resources</h3>
+                        <div id="resourcesList" class="resources-list"></div>
+                        <div class="resource-input">
+                            <input type="text" id="resourceTitle" placeholder="Resource title">
+                            <input type="url" id="resourceUrl" placeholder="URL">
+                            <button class="btn-small" id="addResource">Add</button>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Panel -->
+                <main class="main-panel">
+                    <!-- Tabs -->
+                    <div class="tabs">
+                        <button class="tab-btn active" data-tab="task-input">Add Task</button>
+                        <button class="tab-btn" data-tab="task-list">Tasks</button>
+                        <button class="tab-btn" data-tab="calendar">Calendar</button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content">
+                        <!-- Add Task Tab -->
+                        <div id="task-input" class="tab-pane active">
+                            <h2>Create New Task</h2>
+                            <form id="taskForm">
+                                <div class="form-group">
+                                    <label for="taskTitle">Task Title</label>
+                                    <input type="text" id="taskTitle" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="taskDescription">Description</label>
+                                    <textarea id="taskDescription" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="taskPriority">Priority</label>
+                                    <select id="taskPriority">
+                                        <option value="low">Low</option>
+                                        <option value="medium" selected>Medium</option>
+                                        <option value="high">High</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="taskDate">Due Date</label>
+                                    <input type="date" id="taskDate">
+                                </div>
+                                <div class="form-group">
+                                    <label for="taskTime">Due Time</label>
+                                    <input type="time" id="taskTime">
+                                </div>
+                                <button type="submit" class="btn-primary">Add Task</button>
+                            </form>
+                        </div>
+
+                        <!-- Task List Tab -->
+                        <div id="task-list" class="tab-pane">
+                            <h2>My Tasks</h2>
+                            <div class="filter-controls">
+                                <button class="filter-btn active" data-filter="all">All</button>
+                                <button class="filter-btn" data-filter="high">High</button>
+                                <button class="filter-btn" data-filter="medium">Medium</button>
+                                <button class="filter-btn" data-filter="low">Low</button>
+                                <button class="filter-btn" data-filter="completed">Completed</button>
+                            </div>
+                            <ul id="tasksList" class="tasks-list"></ul>
+                        </div>
+
+                        <!-- Calendar Tab -->
+                        <div id="calendar" class="tab-pane">
+                            <h2>Task Calendar</h2>
+                            <div class="calendar-controls">
+                                <button class="btn-small" id="prevMonth">← Prev</button>
+                                <h3 id="monthYear"></h3>
+                                <button class="btn-small" id="nextMonth">Next →</button>
+                            </div>
+                            <div id="calendarContainer" class="calendar-grid"></div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
